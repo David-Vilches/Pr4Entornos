@@ -12,11 +12,30 @@ import java.util.ArrayList;
  */
 public class Cajero {
 
+    /**
+     * Nombre del cajero
+     */
     private String name;
+    /**
+     * Contador de tickets
+     */
     private int ticketsEmitidos;
+    /**
+     * Total de dinero recaudado
+     */
     private double totalDia;
+    /**
+     * Lista de productos que aparecen en el ticket
+     */
     private ArrayList<Producto> productos;
 
+
+    /**
+     * Constructor de la clase Cajero Inicializa los contadores a 0 y crea la
+     * lista de productos
+     *
+     * @param n nombre del cajero
+     */
     public Cajero(String n) {
         this.name = n;
         this.ticketsEmitidos = 0;
@@ -24,14 +43,29 @@ public class Cajero {
         this.productos = new ArrayList<>();
     }
 
+    /**
+     * Añade un producto a la lista del ticket
+     *
+     * @param p Objeto producto que se va a añadir
+     */
     public void ANADIRPRODUCTO(Producto p) {
         getProductos().add(p);
     }
 
+    /**
+     * Elimina un producto de la lista del ticket
+     *
+     * @param p Objeto producto a eliminar del ticket
+     */
     public void eliminarProDUCTO(Producto p) {
         getProductos().remove(p);
     }
 
+    /**
+     * Procesa el cobro de todos los productos que aparecen en la lista Calcula
+     * el total, el IVA e imprime el ticket Actualiza los contadores Vacia la
+     * lista para el siguiente cliente
+     */
     public void cobrar() {
         double subt = 0;
         subt = calcularPrecio(subt);
@@ -71,6 +105,10 @@ public class Cajero {
     }
     private static final double constante = 0.21;
 
+    /**
+     * Realiza el cierre de caja del dia Calcula el IVA total recaudado y el
+     * total facturado Muestra el numero de tickets del dia
+     */
     public void cierreCaja() {
         double ivaRec = getTotalDia() - (getTotalDia() / (1 + constante));
 
@@ -83,14 +121,29 @@ public class Cajero {
         System.out.println("==========================");
     }
 
+    /**
+     * Comprueba si el ticket actual esta vacio
+     *
+     * @return devuelve True si no existe el ticket y false si existe
+     */
     public boolean ticketVacio() {
         return getProductos().isEmpty();
     }
 
+    /**
+     * Devuelve el total de tickets del dia
+     *
+     * @return El numero de tickets hasta el momento
+     */
     public int getTicketsEmitidos() {
         return ticketsEmitidos;
     }
 
+    /**
+     * Devuelve el total de dinero recaudado en el dia
+     *
+     * @return importe total facturado
+     */
     public double getTotalDia() {
         return totalDia;
     }
